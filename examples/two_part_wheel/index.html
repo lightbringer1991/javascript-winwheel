@@ -28,8 +28,8 @@
     <head>
         <title>HTML5 Canvas Winning Wheel</title>
         <link rel="stylesheet" href="main.css" type="text/css" />
-        <script type="text/javascript" src="../../Winwheel.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script type="text/javascript" src="../../dist/Winwheel.min.js"></script>
     </head>
     <body>
         <div align="center">
@@ -85,7 +85,7 @@
         <script>
             // Need to create the SECONDARY wheel first because on construct the variable which keeps track of the wheel to animate will
             // be set to the last created wheel, and we want the outer one the primary with the animation etc.
-            let innerWheel = new Winwheel({
+            const innerWheel = new Winwheel({
                 'numSegments' : 4,
                 'outerRadius' : 110,        // Set the outer radius to make the wheel smaller than the outer wheel.
                 'segments': [
@@ -99,7 +99,7 @@
             // Define the outer wheel, we will treat this as the PRIMARY which means it clears the canvas when drawing and also
             // gets the animaton applied to it. We must callback a function during the animation to move and draw the inner wheel
             // so the 2 wheels appear as one thing on the canvas.
-            let outerWheel = new Winwheel({
+            const outerWheel = new Winwheel({
                 'numSegments': 8,
                 'textMargin' : 0,
                 'outerRadius' : 210,
@@ -134,7 +134,7 @@
             {
                 // Update the rotationAngle of the innnerWheel to match that of the outer wheel - this is a big part of what
                 // links them to appear as one 2-part wheel. Call the draw function passing false so the outer wheel is not wiped.
-                innerWheel.rotationAngle = outerWheel.rotationAngle;
+                innerWheel.options.rotationAngle = outerWheel.options.rotationAngle;
                 innerWheel.draw(false);
             }
 
@@ -146,7 +146,7 @@
                 let winningOuterSegment = outerWheel.getIndicatedSegment();
 
                 // Alert the combination of prizes won.
-                alert('You won ' + winningInnerSegment.text + ', ' + winningOuterSegment.text);
+                alert('You won ' + winningInnerSegment.options.text + ', ' + winningOuterSegment.options.text);
 
                 // Set things so power and spin button can be clicked again.
                 wheelSpinning = false;
@@ -209,21 +209,21 @@
                     // wheel will probably just move a small amount since the rotationAngle would be close to the targetAngle
                     // figured out by the animation.
                     outerWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                    outerWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                    outerWheel.options.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
                     outerWheel.draw();                // Call draw to render changes to the wheel.
-                    innerWheel.rotationAngle = 0;
+                    innerWheel.options.rotationAngle = 0;
                     innerWheel.draw(false);
 
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
                     // to rotate with the duration of the animation the quicker the wheel spins.
                     if (wheelPower == 1) {
-                        outerWheel.animation.spins = 3;     // Number of spins and/or duration can be altered to make the wheel
-                        outerWheel.animation.duration = 7;  // appear to spin faster or slower.
+                        outerWheel.animation.options.spins = 3;     // Number of spins and/or duration can be altered to make the wheel
+                        outerWheel.animation.options.duration = 7;  // appear to spin faster or slower.
                     } else if (wheelPower == 2) {
-                        outerWheel.animation.spins = 8;
-                        outerWheel.animation.duration = 7;
+                        outerWheel.animation.options.spins = 8;
+                        outerWheel.animation.options.duration = 7;
                     } else if (wheelPower == 3) {
-                        outerWheel.animation.spins = 15;
+                        outerWheel.animation.options.spins = 15;
                     }
 
                     // Disable the spin button so can't click again while wheel is spinning.

@@ -28,8 +28,8 @@
     <head>
         <title>HTML5 Canvas Winning Wheel</title>
         <link rel="stylesheet" href="main.css" type="text/css" />
-        <script type="text/javascript" src="../../Winwheel.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script type="text/javascript" src="../../dist/Winwheel.min.js"></script>
     </head>
     <body>
         <div align="center">
@@ -42,7 +42,7 @@
         </div>
         <script>
             // Create new wheel object specifying the parameters at creation time.
-            let theWheel = new Winwheel({
+            const theWheel = new Winwheel({
                 'numSegments'  : 8,     // Specify number of segments.
                 'outerRadius'  : 212,   // Set outer radius so wheel fits inside the background.
                 'textFontSize' : 28,    // Set font size as desired.

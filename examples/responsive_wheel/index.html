@@ -30,8 +30,8 @@
         <title>HTML5 Canvas Winning Wheel</title>
         <!-- @TODO make the font-size for the text on the page responsive too -->
         <link rel="stylesheet" href="main.css" type="text/css" />
-        <script type="text/javascript" src="../../Winwheel.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script type="text/javascript" src="../../dist/Winwheel.min.js"></script>
     </head>
     <body>
         <div align="center">
@@ -53,7 +53,7 @@
         </div>
         <script>
             // Create winwheel as per normal.
-            let theWheel = new Winwheel({
+            const theWheel = new Winwheel({
                 'numSegments'  : 8,     // Specify number of segments.
                 'textFontSize' : 28,    // Set font size as desired.
                 'responsive'   : true,  // This wheel is responsive!
@@ -90,7 +90,7 @@
 
                 // Reset the rotation angle to less than or equal to 360 so spinning again
                 // works as expected. Setting to modulus (%) 360 keeps the current position.
-                theWheel.rotationAngle = theWheel.rotationAngle % 360;
+                theWheel.options.rotationAngle = theWheel.options.rotationAngle % 360;
 
                 // Start animation.
                 theWheel.startAnimation();

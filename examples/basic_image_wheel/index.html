@@ -28,8 +28,8 @@
     <head>
         <title>HTML5 Canvas Winning Wheel</title>
         <link rel="stylesheet" href="main.css" type="text/css" />
-        <script type="text/javascript" src="../../Winwheel.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script type="text/javascript" src="../../dist/Winwheel.min.js"></script>
     </head>
     <body>
         <div align="center">
@@ -74,7 +74,7 @@
         </div>
         <script>
             // Create new wheel object specifying the parameters at creation time.
-            let theWheel = new Winwheel({
+            const theWheel = new Winwheel({
                 'numSegments'       : 4,         // Specify number of segments.
                 'outerRadius'       : 150,       // Set outer radius so wheel fits inside the background.
                 'drawMode'          : 'image',   // drawMode must be set to image.
@@ -110,7 +110,7 @@
             // Create callback to execute once the image has finished loading.
             loadedImg.onload = function()
             {
-                theWheel.wheelImage = loadedImg;    // Make wheelImage equal the loaded image object.
+                theWheel.options.wheelImage = loadedImg;    // Make wheelImage equal the loaded image object.
                 theWheel.draw();                    // Also call draw function to render the wheel.
             }
 
@@ -167,11 +167,11 @@
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
                     // to rotate with the duration of the animation the quicker the wheel spins.
                     if (wheelPower == 1) {
-                        theWheel.animation.spins = 2;
+                        theWheel.animation.options.spins = 2;
                     } else if (wheelPower == 2) {
-                        theWheel.animation.spins = 5;
+                        theWheel.animation.options.spins = 5;
                     } else if (wheelPower == 3) {
-                        theWheel.animation.spins = 8;
+                        theWheel.animation.options.spins = 8;
                     }
 
                     // Disable the spin button so can't click again while wheel is spinning.
@@ -193,7 +193,7 @@
             function resetWheel()
             {
                 theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                theWheel.options.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
                 theWheel.draw();                // Call draw to render changes to the wheel.
 
                 document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
@@ -210,7 +210,7 @@
             function alertPrize(indicatedSegment)
             {
                 // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-                alert("The wheel stopped on " + indicatedSegment.text);
+                alert("The wheel stopped on " + indicatedSegment.options.text);
             }
         </script>
     </body>

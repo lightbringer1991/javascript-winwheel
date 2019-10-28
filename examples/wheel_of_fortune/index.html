@@ -28,8 +28,8 @@
     <head>
         <title>HTML5 Canvas Winning Wheel</title>
         <link rel="stylesheet" href="main.css" type="text/css" />
-        <script type="text/javascript" src="../../Winwheel.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script type="text/javascript" src="../../dist/Winwheel.min.js"></script>
     </head>
     <body>
         <div align="center">
@@ -78,7 +78,7 @@
         </table>
         <script>
             // Create new wheel object specifying the parameters at creation time.
-            let theWheel = new Winwheel({
+            const theWheel = new Winwheel({
                 'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
                 'innerRadius'     : 75,         // Make wheel hollow so segments don't go all way to center.
                 'textFontSize'    : 24,         // Set default font size for the segments.
@@ -191,11 +191,11 @@
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
                     // to rotate with the duration of the animation the quicker the wheel spins.
                     if (wheelPower == 1) {
-                        theWheel.animation.spins = 3;
+                        theWheel.animation.options.spins = 3;
                     } else if (wheelPower == 2) {
-                        theWheel.animation.spins = 6;
+                        theWheel.animation.options.spins = 6;
                     } else if (wheelPower == 3) {
-                        theWheel.animation.spins = 10;
+                        theWheel.animation.options.spins = 10;
                     }
 
                     // Disable the spin button so can't click again while wheel is spinning.
@@ -217,7 +217,7 @@
             function resetWheel()
             {
                 theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                theWheel.options.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
                 theWheel.draw();                // Call draw to render changes to the wheel.
 
                 document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
@@ -234,12 +234,12 @@
             {
                 // Just alert to the user what happened.
                 // In a real project probably want to do something more interesting than this with the result.
-                if (indicatedSegment.text == 'LOOSE TURN') {
+                if (indicatedSegment.options.text == 'LOOSE TURN') {
                     alert('Sorry but you loose a turn.');
-                } else if (indicatedSegment.text == 'BANKRUPT') {
+                } else if (indicatedSegment.options.text == 'BANKRUPT') {
                     alert('Oh no, you have gone BANKRUPT!');
                 } else {
-                    alert("You have won " + indicatedSegment.text);
+                    alert("You have won " + indicatedSegment.options.text);
                 }
             }
         </script>

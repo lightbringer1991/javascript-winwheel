@@ -1,0 +1,40 @@
+{
+  "name": "javascript-winwheel",
+  "version": "1.0.0",
+  "description": "Create spinning prize wheels on HTML canvas with Winwheel.js",
+  "main": "dist/Winwheel.min.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightbringer1991/javascript-winwheel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightbringer1991/javascript-winwheel/issues"
+  },
+  "homepage": "https://github.com/lightbringer1991/javascript-winwheel#readme",
+  "dependencies": {
+    "gsap": "^2.1.3",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "peerDependencies": {
+    "gsap": ">=2"
+  }
+}
